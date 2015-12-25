@@ -1,0 +1,19 @@
+{
+  "name": "Facebook",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.2.6",
+    "ejs": "*",
+    "mysql":"*",
+    "nodemon":"*",
+    "node-uuid":"*",
+    "client-sessions":"*",
+    "node-gyp":"*",
+"connect-mongostore":"*"
+    
+  }
+}

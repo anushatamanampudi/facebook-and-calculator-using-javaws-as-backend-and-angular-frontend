@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://DefaultNamespace" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://DefaultNamespace" xmlns:intf="http://DefaultNamespace" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="suggestFriends">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="suggestFriendsResponse">
+    <complexType>
+     <sequence>
+      <element name="suggestFriendsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="suggestFriendsResponse">
+
+      <wsdl:part element="impl:suggestFriendsResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="suggestFriendsRequest">
+
+      <wsdl:part element="impl:suggestFriends" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="login">
+
+      <wsdl:operation name="suggestFriends">
+
+         <wsdl:input message="impl:suggestFriendsRequest" name="suggestFriendsRequest"/>
+
+         <wsdl:output message="impl:suggestFriendsResponse" name="suggestFriendsResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="loginSoapBinding" type="impl:login">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="suggestFriends">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="suggestFriendsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="suggestFriendsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="loginService">
+
+      <wsdl:port binding="impl:loginSoapBinding" name="login">
+
+         <wsdlsoap:address location="http://localhost:8080/Server-Facebook/services/login"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

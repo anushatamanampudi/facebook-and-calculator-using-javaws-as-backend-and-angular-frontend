@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+  
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+ <div class="container" ng-controller='AppCntrl'>
+ 
+   <h1> Calculator Application</h1>
+   <table class="table">
+    <thead>
+    <tr>
+    <th> &nbsp;&nbsp;&nbsp;&nbsp; Input1 </th>
+    <th> &nbsp;&nbsp;&nbsp;&nbsp;Input2 </th>
+    <th>Output </th>
+    </tr>
+    </thead>
+    <tr>
+    <td><div class="col-lg-6"> <input class="form-control" type="number"  ng-model="input1" /> </div></td>
+    <td><div class="col-lg-6"><input class="form-control" type="number" ng-model="input2" /></div> </td>
+    <td> {{k}} </td>
+    </tr>
+    <tr>
+    <td style="border-top: 2px"> <button id="add" class="btn btn-primary" ng-click="send($event)"  ng-disabled="check()"/>+</td>
+    </tr>
+    <tr>
+    <td style="border-top: none;"> <button id="sub" class="btn btn-primary" ng-click="send($event)" ng-disabled="check()"/>-</td>
+    </tr>
+    <tr>
+    <td style="border-top: none;"> <button id="div" class="btn btn-primary" ng-click="send($event)" ng-disabled="check()"/>/</td>
+    </tr>
+    <tr>
+    <td style="border-top: none;"> <button id="mul" class="btn btn-primary" ng-click="send($event)" ng-disabled="check()"/>*</td>
+    </tr>
+   </table>
+ </div>
+  <script src=https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js></script>
+  <script>
+  var myApp = angular.module('myApp',[]);
+  myApp.controller('AppCntrl',['$scope','$http',function($scope,$http){
+	  $scope.check=function(){
+		  if($scope.input1==null || $scope.input2==null){
+			  
+			  return true;
+			  
+			 
+		  }
+		  else
+			return false;
+		  
+	  }
+	 
+	  $scope.send = function(event){
+	  var d=event.target.id;
+	  if(d=="add")
+		  {
+	  $http.post('/calc/add',{a:$scope.input1,b:$scope.input2}).success(function(response){
+		 
+		  $scope.k=response.a;
+		  
+		  })
+		  }
+	  if(d=="sub")
+	  {
+  $http.post('/calc/sub',{a:$scope.input1,b:$scope.input2}).success(function(response){
+	 
+	  $scope.k=response.a;
+	  
+	  })
+	  }
+	  if(d=="mul")
+	  {
+  $http.post('/calc/mul',{a:$scope.input1,b:$scope.input2}).success(function(response){
+	 
+	  $scope.k=response.a;
+	  
+	  })
+	  }
+	  if(d=="div")
+	  {
+  $http.post('/calc/div',{a:$scope.input1,b:$scope.input2}).success(function(response){
+	 
+	  $scope.k=response.a;
+	  
+	  })
+	  }
+
+	  }
+  }]);
+   
+ </script> 
+ </body>
+</html>
+  
+  

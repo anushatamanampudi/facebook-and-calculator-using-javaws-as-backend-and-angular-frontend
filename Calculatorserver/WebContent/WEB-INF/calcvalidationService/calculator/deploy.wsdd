@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from calcvalidationService WSDL service -->
+
+  <service name="calcvalidation" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://calculator"/>
+      <parameter name="wsdlServiceElement" value="calcvalidationService"/>
+      <parameter name="schemaQualified" value="http://calculator"/>
+      <parameter name="wsdlServicePort" value="calcvalidation"/>
+      <parameter name="className" value="calculator.calcvalidation"/>
+      <parameter name="wsdlPortType" value="calcvalidation"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://calculator" xmlns:retNS="http://calculator" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="sub" qname="operNS:sub" returnQName="retNS:subReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://calculator" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:a" type="tns:int"/>
+        <parameter xmlns:pns="http://calculator" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:b" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://calculator" xmlns:retNS="http://calculator" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="mul" qname="operNS:mul" returnQName="retNS:mulReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://calculator" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:a" type="tns:int"/>
+        <parameter xmlns:pns="http://calculator" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:b" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://calculator" xmlns:retNS="http://calculator" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="add" qname="operNS:add" returnQName="retNS:addReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://calculator" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:a" type="tns:int"/>
+        <parameter xmlns:pns="http://calculator" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:b" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://calculator" xmlns:retNS="http://calculator" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="div" qname="operNS:div" returnQName="retNS:divReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://calculator" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:a" type="tns:int"/>
+        <parameter xmlns:pns="http://calculator" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:b" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="add div sub mul"/>
+
+  </service>
+</deployment>
